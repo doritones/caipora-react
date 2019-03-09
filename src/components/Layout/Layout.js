@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './Layout.css';
 import TopMenu from '../Navigation/TopMenu/TopMenu'
 
 // Using Fragment to avoid extra nodes when rendering multiple Components
@@ -10,6 +11,9 @@ class Layout extends Component {
         return (
             <React.Fragment>
                 <TopMenu />
+                <main className='Content'>
+                    {this.props.children}
+                </main>
             </React.Fragment>
         )
     }

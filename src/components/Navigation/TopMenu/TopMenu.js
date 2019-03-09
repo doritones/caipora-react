@@ -1,5 +1,6 @@
 import React from 'react';
 
+import'./TopMenu.css';
 import NavItems from '../NavItems/NavItems'
 
 const topMenu = (props) => (
