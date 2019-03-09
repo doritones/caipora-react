@@ -1,0 +1,27 @@
+.AboutUs {
+    width: 100%;
+    height: calc(100vh - 60px);
+    justify-content: center;
+    align-items: center;
+    background-color: darkgrey;
+    position: relative;
+}
+
+.AboutUsContent {
+    width: 50vw;
+    height: 50vh; 
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.AboutUsContent h3 {
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.AboutUsContent p {
+    text-align: center;
+    font-size: 1.2rem;
+}
