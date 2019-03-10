@@ -14,7 +14,7 @@ class Home extends React.Component {
         setInterval(this.timer, 1000);
     }
 
-    componentWillReceiveProps () {
+    componentWillUnmount () {
         //Find how to clearInterval on componentDidMount
     }
 
