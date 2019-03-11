@@ -17,7 +17,7 @@ class Timeline extends React.Component {
             .then(data => data.json())
             .then(data => {
                 data.records.map(record =>  {
-                    this.setState({
+                    return this.setState({
                         timeline: [{
                             id: record.id,
                             date: record.fields['Publicado'],
@@ -31,6 +31,7 @@ class Timeline extends React.Component {
     }
 
     render() {
+        console.log(this.state.timeline);
         return (
             <div className='Timeline'>
                 <h3>Timeline</h3>
