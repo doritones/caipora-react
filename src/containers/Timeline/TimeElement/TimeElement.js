@@ -1,7 +1,7 @@
 import React from 'react';
 
 const timeElement = (props) => (
-    <li key={props.id}>
+    <li>
         <div>
             <time>{props.date}</time>
             <p>{props.text}</p>

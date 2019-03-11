@@ -38,7 +38,7 @@ class Timeline extends React.Component {
                 <ul className="Timepoint">
                     {this.state.timeline.map(elem =>
                         <TimeElement
-                            key={elem.key}
+                            key={elem.id}
                             date={elem.date}
                             text={elem.text}
                             source={elem.source}
