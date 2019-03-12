@@ -1,0 +1,12 @@
+.Timeline {
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+  
+.Timeline h3 {
+    text-align: center;
+}

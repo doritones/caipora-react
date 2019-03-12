@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TimeElement from './TimeElement/TimeElement';
+import './Timeline.css';
 
 class Timeline extends React.Component {
     constructor(props) {
