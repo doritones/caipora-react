@@ -10,3 +10,7 @@
 .Timeline h3 {
     text-align: center;
 }
+
+.Timepoint {
+    height: stretch
+}

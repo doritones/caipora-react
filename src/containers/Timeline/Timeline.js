@@ -1,13 +1,15 @@
 import React from 'react';
 
 import TimeElement from './TimeElement/TimeElement';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import './Timeline.css';
 
 class Timeline extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            timeline: []
+            timeline: [],
+            loading: true
         }
     }
 
@@ -27,24 +29,30 @@ class Timeline extends React.Component {
                     };
                     timelineArr.push(timelineItem);
                 });
-                return this.setState({ timeline: timelineArr });
+                return this.setState({ timeline: timelineArr, loading: false });
             })
             .catch(err => console.log(err));
     }
 
     render() {
+        let timeElement = this.state.timeline.map(elem => 
+            <TimeElement
+                key={elem.id}
+                date={elem.date}
+                text={elem.text}
+                source={elem.source}
+            />
+        )
+        
+        if (this.state.loading) {
+            timeElement = <Spinner />;
+        }
+
         return (
             <div className='Timeline'>
                 <h3>Timeline</h3>
                 <ul className="Timepoint">
-                    {this.state.timeline.map(elem => 
-                        <TimeElement
-                            key={elem.id}
-                            date={elem.date}
-                            text={elem.text}
-                            source={elem.source}
-                        />
-                    )}
+                    {timeElement}
                 </ul>
             </div>
         );
