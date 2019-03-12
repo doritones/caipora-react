@@ -16,27 +16,27 @@ class Timeline extends React.Component {
         })
             .then(data => data.json())
             .then(data => {
-                data.records.map(record =>  {
-                    return this.setState({
-                        timeline: [{
-                            id: record.id,
-                            date: record.fields['Publicado'],
-                            text: record.fields['Texto'],
-                            source: record.fields['Canal']
-                        }]
-                    })
-                })
+                let timelineArr = [];
+                data.records.forEach(record =>  {
+                    let timelineItem = {
+                        id: record.id,
+                        date: record.fields['Publicado'],
+                        text: record.fields['Texto'],
+                        source: record.fields['Canal']
+                    };
+                    timelineArr.push(timelineItem);
+                });
+                return this.setState({ timeline: timelineArr });
             })
             .catch(err => console.log(err));
     }
 
     render() {
-        console.log(this.state.timeline);
         return (
             <div className='Timeline'>
                 <h3>Timeline</h3>
                 <ul className="Timepoint">
-                    {this.state.timeline.map(elem =>
+                    {this.state.timeline.map(elem => 
                         <TimeElement
                             key={elem.id}
                             date={elem.date}
