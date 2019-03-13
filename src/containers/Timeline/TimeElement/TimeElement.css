@@ -20,17 +20,38 @@
   
 .TimeElement div {
     position: relative;
-    bottom: 0;
+    bottom: -5px;
     width: 600px;
     padding: 15px;
     background: #a9ad9b;
     border-radius: 15px;
 }
+
+.TimeElement div::before {
+    content: '';
+    position: absolute;
+    bottom: 14px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
   
 .TimeElement:nth-child(odd) div {
     left: 45px;
 }
-  
+
+.TimeElement:nth-child(odd) div::before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #a9ad9b transparent transparent;
+}
+
 .TimeElement:nth-child(even) div {
     left: -670px;
+}
+
+.TimeElement:nth-child(even) div::before {
+    right: -15px;
+    border-width: 8px 0 8px 16px;
+    border-color: transparent transparent transparent #a9ad9b;
 }
