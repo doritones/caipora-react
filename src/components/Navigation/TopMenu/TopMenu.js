@@ -1,10 +1,12 @@
 import React from 'react';
 
+import NavItems from '../NavItems/NavItems';
+import Toggle from '../SideMenu/Toggle/Toggle';
 import'./TopMenu.css';
-import NavItems from '../NavItems/NavItems'
 
 const topMenu = (props) => (
     <header className="TopMenu">
+        <Toggle clicked={props.menuToggleClicked}/>
         <div className='Logo'>
             <p>Caipora</p>
         </div>

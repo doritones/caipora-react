@@ -38,6 +38,7 @@
   
 .TimeElement:nth-child(odd) div {
     left: 45px;
+    /* transform: translateY(25%); */
 }
 
 .TimeElement:nth-child(odd) div::before {
