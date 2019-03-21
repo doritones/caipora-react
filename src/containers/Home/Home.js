@@ -11,11 +11,14 @@ class Home extends React.Component {
         }
     }
     componentDidMount() {
-        setInterval(this.timer, 1000);
+        this.counter = setInterval(this.timer, 1000);
     }
 
     componentWillUnmount () {
-        //Find how to clearInterval on componentDidMount
+        if (this.counter) {
+            clearInterval(this.counter)
+            this.counter = null
+          }
     }
 
     timer() {
@@ -31,7 +34,7 @@ class Home extends React.Component {
             <div className='Home'>
                 <div className='HomeContent'>
                     {/* <!--- Image used only for study purpose, will be changed in final version, with correct credit --> */}
-                    <h3 className='HomeText'>Since the beginning of the last government term in Brazil,<br/><a className='HomeTimer'>{this.state.timer}</a><br/> soccer fields were deforested.</h3>
+                    <h3 className='HomeText'>Since the beginning of the last government term in Brazil,<br/><span className='HomeTimer'>{this.state.timer}</span><br/> soccer fields were deforested.</h3>
                 </div>
         </div>
         );
