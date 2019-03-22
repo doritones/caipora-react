@@ -1,0 +1,35 @@
+.Home {
+    width: 100%;
+    height: calc(100vh - 60px);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url("https://d3w2mpp70f6o8z.cloudfront.net/media/images/Amazon-rainforest-trees-ThinkstockPhotos-Khlong.original.jpg");
+    background-color: darkgrey;
+    background-size: 100vw;
+}
+
+.HomeContent {
+    width: 60vw;
+    height: 50vh; 
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-transform: uppercase;
+    color: #fff;
+    background-color: hsla(0, 0%, 0%, 0.4);
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.HomeText {
+    text-align: center;
+    font-size: 4rem;
+    position: relative;
+}
+
+.HomeTimer {
+    font-size: 7rem;
+    border: 0px;
+}
