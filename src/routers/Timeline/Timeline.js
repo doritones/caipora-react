@@ -7,6 +7,7 @@ import './Timeline.css';
 class Timeline extends React.Component {
     constructor(props) {
         super(props)
+        this.listSort = this.listSort.bind(this);
         this.state = {
             timeline: [],
             loading: true
@@ -34,6 +35,12 @@ class Timeline extends React.Component {
             .catch(err => console.log(err));
     }
 
+    listSort (e) {
+        const sortList = this.state.timeline;
+        let resortedList = sortList.reverse();
+        this.setState({ timeline: resortedList });
+    }
+
     render() {
         let timeElement = this.state.timeline.map(elem => 
             <TimeElement
@@ -51,6 +58,7 @@ class Timeline extends React.Component {
         return (
             <div className='Timeline'>
                 <h3>Timeline</h3>
+                <button className="ButtonSort" onClick={this.listSort}>Invert order</button>
                 <ul className="Timepoint">
                     {timeElement}
                 </ul>
