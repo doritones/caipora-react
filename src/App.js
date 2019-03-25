@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
-import Home from './containers/Home/Home';
-import Timeline from './containers/Timeline/Timeline';
-import AboutUs from './containers/AboutUs/AboutUs'
+import Home from './routers/Home/Home';
+import Timeline from './routers/Timeline/Timeline';
+import AboutUs from './routers/AboutUs/AboutUs'
 
 class App extends Component {
   render() {
