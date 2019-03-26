@@ -92,7 +92,7 @@ class Timeline extends React.Component {
                 <div className='Filters'>
                 {/* Buttons on this section should be reusable, created on components folder */}
                     {this.state.tagsFilter ? 
-                        <button className='ButtonTag' onClick={this.cleanFilter}>{this.state.tagsFilter}</button> 
+                        <button className='ButtonTag' onClick={this.cleanFilter}>{this.state.tagsFilter} <i className="fas fa-times-circle"></i></button> 
                         : <DropdownButton text='Filter by Tag' items={this.state.tags} filter={this.filterTags} /> }
                     <button className="ButtonSort" onClick={this.listSort}>Invert order</button>
                 </div>
