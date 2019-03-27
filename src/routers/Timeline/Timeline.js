@@ -8,20 +8,29 @@ import './Timeline.css';
 class Timeline extends React.Component {
     constructor(props) {
         super(props)
+        this.retrieveData = this.retrieveData.bind(this);
         this.listTags = this.listTags.bind(this);
+        this.listMonths = this.listMonths.bind(this);
         this.listSort = this.listSort.bind(this);
         this.filterTags = this.filterTags.bind(this);
-        this.cleanFilter = this.cleanFilter.bind(this);
+        this.filterMonths = this.filterMonths.bind(this);
+        this.cleanTagsFilter = this.cleanTagsFilter.bind(this);
+        this.cleanMonthsFilter = this.cleanMonthsFilter.bind(this);
         this.state = {
             timeline: [],
-            timelineBackup: [],
             tags: [],
+            months: [],
             tagsFilter: null,
+            monthsFilter: null,
             loading: true
         }
     }
 
     componentDidMount() {
+        this.retrieveData();
+    }
+
+    retrieveData () {
         fetch("https://api.airtable.com/v0/appGU1IvnOZqFFiCh/Table%201?view=Grid%20view", {
             headers: { Authorization: "Bearer " + process.env.REACT_APP_AIRTABLE_API_KEY } //using .env and sourcing before starting Node
         })
@@ -38,9 +47,10 @@ class Timeline extends React.Component {
                     };
                     timelineArr.push(timelineItem);
                 });
-                return this.setState({ timeline: timelineArr, timelineBackup: timelineArr, loading: false });
+                return this.setState({ timeline: timelineArr, loading: false });
             })
             .then(this.listTags)
+            .then(this.listMonths)
             .catch(err => console.log(err));
     }
 
@@ -50,6 +60,14 @@ class Timeline extends React.Component {
         let tagElem = tags.map(elem => elem.tags).flat();
         let uniqueTags = [...new Set(tagElem)];
         this.setState({ tags: uniqueTags })
+    }
+
+    listMonths () {
+        // It's called when component mount, in the last fetch promise, to populate 'months' state
+        const months = [...this.state.timeline];
+        let monthElem = months.map(elem => new Intl.DateTimeFormat('pt-BR', { month: 'long'}).format(new Date(elem.date)));
+        let uniqueMonths = [...new Set(monthElem)];
+        this.setState({ months: uniqueMonths })
     }
 
     listSort (e) {
@@ -66,9 +84,23 @@ class Timeline extends React.Component {
         this.setState({ timeline: filteredTags, tagsFilter: e })
     }
 
-    cleanFilter (e) {
-        // Using a timeline backup on state until better solution (maybe refetch the data, creating a function outside componentDidMount)
-        this.setState({ timeline: this.state.timelineBackup, tagsFilter: null })
+    filterMonths (e) {
+        const monthList = [...this.state.timeline];
+        // eslint-disable-next-line
+        let filteredMonths = monthList.filter(item => new Intl.DateTimeFormat('pt-BR', { month: 'long'}).format(new Date(item.date)) === e);
+        this.setState({ timeline: filteredMonths, monthsFilter: e })
+    }
+
+    cleanTagsFilter (e) {
+        this.setState({ loading: true });
+        this.retrieveData();
+        this.setState({ tagsFilter: null });
+    }
+
+    cleanMonthsFilter (e) {
+        this.setState({ loading: true });
+        this.retrieveData();
+        this.setState({ monthsFilter: null });
     }
 
     render() {
@@ -85,15 +117,20 @@ class Timeline extends React.Component {
         if (this.state.loading) {
             timeElement = <Spinner />;
         }
-
+        
         return (
             <div className='Timeline'>
                 <h3>Timeline</h3>
                 <div className='Filters'>
                 {/* Buttons on this section should be reusable, created on components folder */}
-                    {this.state.tagsFilter ? 
-                        <button className='ButtonTag' onClick={this.cleanFilter}>{this.state.tagsFilter} <i className="fas fa-times-circle"></i></button> 
-                        : <DropdownButton text='Filter by Tag' items={this.state.tags} filter={this.filterTags} /> }
+                    <div>
+                        {this.state.monthsFilter ? 
+                            <button className='ButtonTag' onClick={this.cleanMonthsFilter}>{this.state.monthsFilter} <i className="fas fa-times-circle"></i></button> 
+                            : <DropdownButton text='Filter by Month' items={this.state.months} filter={this.filterMonths} /> }
+                        {this.state.tagsFilter ? 
+                            <button className='ButtonTag' onClick={this.cleanTagsFilter}>{this.state.tagsFilter} <i className="fas fa-times-circle"></i></button> 
+                            : <DropdownButton text='Filter by Tag' items={this.state.tags} filter={this.filterTags} /> }
+                    </div>
                     <button className="ButtonSort" onClick={this.listSort}>Invert order</button>
                 </div>
                 <ul className="Timepoint">
