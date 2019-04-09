@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from '../../axios';
 
 import TimeElement from '../../components/TimeElement/TimeElement';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -31,13 +32,10 @@ class Timeline extends React.Component {
     }
 
     retrieveData () {
-        fetch("https://api.airtable.com/v0/appGU1IvnOZqFFiCh/Table%201?view=Grid%20view", {
-            headers: { Authorization: "Bearer " + process.env.REACT_APP_AIRTABLE_API_KEY } //using .env and sourcing before starting Node
-        })
-            .then(data => data.json())
-            .then(data => {
+        axios.get()
+            .then(res => {
                 let timelineArr = [];
-                data.records.forEach(record =>  {
+                res.data.records.forEach(record =>  {
                     let timelineItem = {
                         id: record.id,
                         date: record.fields['Publicado'],
