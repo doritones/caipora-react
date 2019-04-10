@@ -121,7 +121,7 @@ class Timeline extends React.Component {
                 <h3>Timeline</h3>
                 <div className='Filters'>
                 {/* Buttons on this section should be reusable, created on components folder */}
-                    <div>
+                    <div className='LeftButtons'>
                         {this.state.monthsFilter ? 
                             <button className='ButtonTag' onClick={this.cleanMonthsFilter}>{this.state.monthsFilter} <i className="fas fa-times-circle"></i></button> 
                             : <DropdownButton text='Filter by Month' items={this.state.months} filter={this.filterMonths} /> }

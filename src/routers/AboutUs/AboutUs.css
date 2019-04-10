@@ -4,16 +4,14 @@
     justify-content: center;
     align-items: center;
     background-color: darkgrey;
-    position: relative;
+    position: relative;  display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .AboutUsContent {
-    width: 50vw;
-    height: 50vh; 
-    position: absolute;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%,-50%);
+    width: 75%;
+    margin: auto;
 }
 
 .AboutUsContent h3 {
@@ -24,4 +22,21 @@
 .AboutUsContent p {
     text-align: center;
     font-size: 1.2rem;
+}
+
+@media (max-width: 650px) {
+    .AboutUs {
+        overflow: auto;
+        display: block;    
+    }
+    .AboutUsContent h3 {
+        font-size: 1.3rem;
+    }
+    .AboutUsContent p {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 651px) and (max-width: 950px) {
+
 }

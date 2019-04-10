@@ -1,58 +1,105 @@
-.TimeElement {
-    list-style-type: none;
-    position: relative;
-    width: 6px;
-    margin: 0 auto;
-    background: #fff;
-}
-  
-.TimeElement::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: inherit;
-}
-  
-.TimeElement div {
-    position: relative;
-    bottom: -5px;
-    width: 600px;
-    padding: 15px;
-    background: #a9ad9b;
-    border-radius: 15px;
+@media (min-width: 1401px) { 
+    .TimeElement {
+        list-style-type: none;
+        position: relative;
+        width: 6px;
+        margin: 0 auto;
+        background: #fff;
+    }
+    
+    .TimeElement::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: inherit;
+    }
+    
+    .TimeElement div {
+        position: relative;
+        bottom: -5px;
+        width: 600px;
+        padding: 15px;
+        background: #a9ad9b;
+        border-radius: 15px;
+    }
+
+    .TimeElement div::before {
+        content: '';
+        position: absolute;
+        bottom: 14px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+    
+    .TimeElement:nth-child(odd) div {
+        left: 45px;
+        /* transform: translateY(25%); */
+    }
+
+    .TimeElement:nth-child(odd) div::before {
+        left: -15px;
+        border-width: 8px 16px 8px 0;
+        border-color: transparent #a9ad9b transparent transparent;
+    }
+
+    .TimeElement:nth-child(even) div {
+        left: -670px;
+    }
+
+    .TimeElement:nth-child(even) div::before {
+        right: -15px;
+        border-width: 8px 0 8px 16px;
+        border-color: transparent transparent transparent #a9ad9b;
+    }
 }
 
-.TimeElement div::before {
-    content: '';
-    position: absolute;
-    bottom: 14px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-  
-.TimeElement:nth-child(odd) div {
-    left: 45px;
-    /* transform: translateY(25%); */
+@media (max-width: 1400px) {
+    .TimeElement {
+        list-style-type: none;
+        position: relative;
+        width: 6px;
+        height: calc(100% + 40px);
+        margin: 0 5vw;
+        background: #fff;
+    }
+
+    .TimeElement::after {
+        content: "";
+        position: absolute;
+        transform: translate(-50%, -60px);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: inherit;
+    }
+
+    .TimeElement div {
+        width: 80vw;
+        padding: 15px;
+        background: #a9ad9b;
+        border-radius: 15px;
+        margin: 0 0 20px 40px;
+    }
+
+    .TimeElement div::before {
+        content: '';
+        position: absolute;
+        bottom: 38px;
+        left: 25px;
+        border-style: solid;
+        border-width: 8px 16px 8px 0;
+        border-color: transparent #a9ad9b transparent transparent;
+    }
 }
 
-.TimeElement:nth-child(odd) div::before {
-    left: -15px;
-    border-width: 8px 16px 8px 0;
-    border-color: transparent #a9ad9b transparent transparent;
-}
-
-.TimeElement:nth-child(even) div {
-    left: -670px;
-}
-
-.TimeElement:nth-child(even) div::before {
-    right: -15px;
-    border-width: 8px 0 8px 16px;
-    border-color: transparent transparent transparent #a9ad9b;
+@media (max-width: 650px) {
+    .TimeElement div {
+        width: 70vw;
+    }
 }

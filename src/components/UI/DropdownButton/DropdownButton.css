@@ -37,3 +37,9 @@
 .Dropdown:hover .DropdownContent {display: block;}
 
 .Dropdown:hover .DropdownButton {background-color: #3e8e41;}
+
+@media (max-width: 650px) {
+    .Dropdown{
+        float: left;
+    }
+}

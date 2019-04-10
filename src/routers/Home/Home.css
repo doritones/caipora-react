@@ -45,8 +45,14 @@
     }
 }
 
-@media (max-width: 950px) {
+@media (min-width: 651px) and (max-width: 950px) {
     .Home {
-       background-size: 300%;
+       background-size: 200%;
+    }
+    .HomeText {
+        font-size: 2.3rem;
+    }
+    .HomeTimer {
+        font-size: 4rem;
     }
 }
