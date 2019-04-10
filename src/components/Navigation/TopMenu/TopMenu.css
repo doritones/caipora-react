@@ -20,8 +20,11 @@
 	height: 100%;
 } 
 
-@media (max-width: 499px) {
+@media (max-width: 650px) {
 	.Desktop {
 		display: none;
+	}
+	.TopMenu {
+		width: 100vw;
 	}
 }
