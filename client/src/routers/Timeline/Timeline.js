@@ -34,7 +34,6 @@ class Timeline extends React.Component {
     retrieveData () {
         axios.get('/api/timeline')
             .then(res => {
-                console.log(res)
                 let timelineArr = [];
                 res.data.records.forEach(record =>  {
                     let timelineItem = {
