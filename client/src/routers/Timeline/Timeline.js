@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '../../axios';
+import axios from 'axios';
 
 import TimeElement from '../../components/TimeElement/TimeElement';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -32,8 +32,9 @@ class Timeline extends React.Component {
     }
 
     retrieveData () {
-        axios.get()
+        axios.get('/api/timeline')
             .then(res => {
+                console.log(res)
                 let timelineArr = [];
                 res.data.records.forEach(record =>  {
                     let timelineItem = {
