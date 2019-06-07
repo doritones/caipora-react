@@ -1,0 +1,34 @@
+html
+  head
+    title New Timeline Entry
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //link(rel='stylesheet', href='/public/style.css')
+  body
+    h3 New Timeline Entry
+    form(action='/api/cms/newtlentry', method='post')
+        div
+          label Date:
+          input(type='date', name='date_of_the_news', required="")
+        div
+          label Text:
+          input(type='text', name='text_of_timeline', required="")
+        div
+          label Source:
+          input(type='text', name='source', required="")
+        div
+          label Link for the news:
+          input(type='url', name='link_news', required="")
+        div
+          label Tags:
+          input(list='tags', name='tags', required="")
+          datalist(id='tags')
+            option(value='Política geral')
+            option(value='Acordos internacionais')
+            option(value='MMA')
+        div
+          label Author:
+          input(type='text', name='author', required="")
+        div
+          input(type='submit', value='Submit')
