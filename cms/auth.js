@@ -9,7 +9,7 @@ module.exports = function(app) {
 
     app.set('view engine', 'pug');
 
-    mongoose.connect(process.env.DB, { useNewUrlParser: true });
+    mongoose.connect(process.env.DB, { useNewUrlParser: true, useFindAndModify: false });
 
     const user = new Schema ({
         username: { type: String, required: true }, 

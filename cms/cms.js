@@ -15,7 +15,7 @@ module.exports = function(app) {
         res.redirect('/api/cms/login');
     };
 
-    mongoose.connect(process.env.DB, { useNewUrlParser: true });
+    mongoose.connect(process.env.DB, { useNewUrlParser: true, useFindAndModify: false });
   
     const newTL = new Schema ({
         date_of_the_news: { type: String, required: true }, 
@@ -66,12 +66,29 @@ module.exports = function(app) {
                     if (err) {
                         console.log(err);
                     }
-                    let html = pug.renderFile('./cms/tledit.pug', { username: req.user.username, data: data, tags: tags[0].tags });
+                    let html = pug.renderFile('./cms/tledit.pug', { username: req.user.username, data: data, tags: tags[0].tags, message: req.flash('message') });
                     res.send(html);
                 })
             })
             .catch(err => console.log(err));
         })
+        .post((req, res) => {
+            let update = {
+                date_of_the_news: req.body.date_of_the_news, 
+                text_of_timeline: req.body.text_of_timeline,
+                source: req.body.source,
+                link_news: req.body.link_news,
+                tags: req.body.tags,
+                updated_on: Date.now()
+            };
+            TLEntry.findByIdAndUpdate(req.params.id, update, (err, data) => {
+                if (err) {
+                    console.log(err);
+                }
+                req.flash('message', 'Timeline entry successfully updated.')
+                res.redirect('/api/cms/tledit/' + req.params.id);
+            })
+        });
 
     //New timeline entry
     app.route('/api/cms/newtlentry')
@@ -84,7 +101,6 @@ module.exports = function(app) {
             .catch(err => console.log(err));
         })
         .post((req, res) => {
-            
             let newTLEntry = new TLEntry({
                 date_of_the_news: req.body.date_of_the_news, 
                 text_of_timeline: req.body.text_of_timeline,

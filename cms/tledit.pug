@@ -8,7 +8,9 @@ html
   body
     h3 Timeline Edit
     h4 Hello #{username}
-    form(action='/api/cms/tledit', method='post')
+    if message
+      p #{message}
+    form(action='/api/cms/tledit/' + data._id, method='post')
         div
           label Date:
           input(type='date', name='date_of_the_news', value=data.date_of_the_news, required="")
