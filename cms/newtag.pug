@@ -1,0 +1,25 @@
+html
+  head
+    title Create New Tag
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //link(rel='stylesheet', href='/public/style.css')
+  body
+    h3 Create New Tag
+    h4 Hello #{username}
+    h5 Existing Tags:
+    ul
+        each item in tags
+                div
+                    input(type='checkbox', name='tags', value=item)
+                    label(for=item) #{item}
+    if message
+        p #{message}
+    form(action='/api/cms/newtag', method='post')
+        div
+          label Create New Tag:
+          input(type='text', name='new_tag', required="")
+        div
+          input(type='submit', value='Submit')
+    a(href='/logout') Logout

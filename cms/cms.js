@@ -30,6 +30,12 @@ module.exports = function(app) {
 
     const TLEntry = mongoose.model('TLEntry', newTL);
 
+    const newTag = new Schema ({
+        tags: [String]
+    }, { collection: 'specs' });
+
+    const TagEntry = mongoose.model('TagEntry', newTag);
+
     //Timeline listing
     app.route('/api/cms/tlentries')
         .get(ensureAuthenticated, (req,res) => {
@@ -85,6 +91,32 @@ module.exports = function(app) {
                 if (err)
                     console.log(err);
                 res.send(data);
+            });
+        });
+    
+    //New timeline entry
+    app.route('/api/cms/newtag')
+        .get(ensureAuthenticated, (req,res) => {
+            TagEntry.find().lean()
+            .then(data => {
+                let html = pug.renderFile('./cms/newtag.pug', { username: req.user.username, tags: data[0].tags, message: req.flash('message') });
+                res.send(html);
+            })
+            .catch(err => console.log(err));
+        })
+        .post((req, res) => {
+            TagEntry.findById('5cffe58afb6fc00e79a791ca' , (err, data) => {
+                if (err) {
+                    console.log(err);
+                }
+                data.tags.push(req.body.new_tag);
+                data.save((err, data) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    req.flash('message', 'Tag successfully added.');
+                    res.redirect('/api/cms/newtag');   
+                });            
             });
         });
 
