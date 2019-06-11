@@ -1,14 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const axios = require('axios');
 const dotenv = require('dotenv');
-const safeJsonStringify = require('safe-json-stringify');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 
 const cms = require('./cms/cms.js');
-const auth = require('./cms/auth.js')
+const auth = require('./cms/auth.js');
 
 const app = express();
 dotenv.config();
@@ -32,11 +30,6 @@ app.use(flash());
 
 //Authentication
 auth(app);
-
-app.get("/api/timeline", (req, res) => {
-   axios.get('https://api.airtable.com/v0/appGU1IvnOZqFFiCh/Table%201?view=Grid%20view', 
-   { headers: { Authorization: "Bearer " + process.env.AIRTABLE_API_KEY }}).then(response => res.send(safeJsonStringify(response.data)))
-});
 
 //Connecting to CMS
 cms(app);

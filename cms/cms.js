@@ -143,4 +143,14 @@ module.exports = function(app) {
             });
         });
 
+    
+    //API Caipora
+    app.get("/api/timeline", (req, res) => {
+        TLEntry.find((err, data) => {
+            if (err) {
+                console.log(err);
+            }
+            res.send(data);    
+        })
+    });
 };

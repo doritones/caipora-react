@@ -35,13 +35,13 @@ class Timeline extends React.Component {
         axios.get('/api/timeline')
             .then(res => {
                 let timelineArr = [];
-                res.data.records.forEach(record =>  {
+                res.data.forEach(record =>  {
                     let timelineItem = {
-                        id: record.id,
-                        date: record.fields['Publicado'],
-                        text: record.fields['Texto'],
-                        source: record.fields['Canal'],
-                        tags: record.fields['Tag']
+                        id: record._id,
+                        date: record.date_of_the_news,
+                        text: record.text_of_timeline,
+                        source: record.source,
+                        tags: record.tags
                     };
                     timelineArr.push(timelineItem);
                 });

@@ -11,7 +11,7 @@ const timeElement = (props) => (
             <time>{formatDate(props.date)}</time>
             <p>{props.text}</p>
             <p>{props.source}</p>
-            <p>Tags: {props.tags.join(', ')}</p>
+            <p>Tags: {props.tags}</p>
         </div>
     </li>
 );
