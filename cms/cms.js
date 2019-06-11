@@ -60,21 +60,28 @@ module.exports = function(app) {
     //Timeline edit
     app.route('/api/cms/tledit/:id')
         .get(ensureAuthenticated, (req, res) => {
-            TLEntry.findById(req.params.id, (err,data) => {
-                if (err) {
-                    console.log(err);
-                }
-                console.log(data);
-                let html = pug.renderFile('./cms/tledit.pug', { username: req.user.username, data: data });
-                res.send(html);
+            TagEntry.find().lean()
+            .then(tags => {
+                TLEntry.findById(req.params.id, (err,data) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    let html = pug.renderFile('./cms/tledit.pug', { username: req.user.username, data: data, tags: tags[0].tags });
+                    res.send(html);
+                })
             })
+            .catch(err => console.log(err));
         })
 
     //New timeline entry
     app.route('/api/cms/newtlentry')
         .get(ensureAuthenticated, (req,res) => {
-            let html = pug.renderFile('./cms/newtlentry.pug', { username: req.user.username });
-            res.send(html);
+            TagEntry.find().lean()
+            .then(data => {
+                let html = pug.renderFile('./cms/newtlentry.pug', { username: req.user.username, tags: data[0].tags });
+                res.send(html);
+            })
+            .catch(err => console.log(err));
         })
         .post((req, res) => {
             
@@ -94,7 +101,7 @@ module.exports = function(app) {
             });
         });
     
-    //New timeline entry
+    //New tag entry
     app.route('/api/cms/newtag')
         .get(ensureAuthenticated, (req,res) => {
             TagEntry.find().lean()

@@ -24,14 +24,11 @@ html
         div
           label Tags:
             div
-                input(type='checkbox', name='tags', value='Política geral', checked=('Política geral'===data.tags ? "checked" : undefined))
-                label(for='Política geral') Política geral
-            div
-                input(type='checkbox', name='tags', value='Acordos internacionais', checked=('Acordos internacionais'===data.tags ? "checked" : undefined))
-                label(for='Acordos internacionais') Acordos internacionais
-            div
-                input(type='checkbox', name='tags', value='MMA', checked=('MMA'===data.tags ? "checked" : undefined))
-                label(for='MMA') MMA
+              ul
+                each item in tags
+                  div
+                    input(type='checkbox', name='tags', value=item, checked=(item===data.tags ? "checked" : undefined))
+                    label(for=item) #{item}
         div
           label Author:
           input(type='text', name='author', value=data.author, required="", readonly)

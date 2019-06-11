@@ -23,11 +23,11 @@ html
           input(type='url', name='link_news', required="")
         div
           label Tags:
-          input(list='tags', name='tags', required="")
-          datalist(id='tags')
-            option(value='Política geral')
-            option(value='Acordos internacionais')
-            option(value='MMA')
+        ul
+          each item in tags
+            div
+              input(type='checkbox', name='tags', value=item)
+              label(for=item) #{item}
         div
           label Author:
           input(type='text', name='author', value=username, required="", readonly)
