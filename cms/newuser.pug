@@ -1,0 +1,20 @@
+html
+  head
+    title New User
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //link(rel='stylesheet', href='/public/style.css')
+  body
+    h3 New User
+    form(action='/api/cms/newuser', method='post')
+        div
+          label Username:
+          input(type='text', name='username', required="")
+        div
+          label Password:
+          input(type='text', name='password', required="")
+        div
+          input(type='submit', value='Submit')
+    if message
+      p #{message}

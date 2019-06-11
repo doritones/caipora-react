@@ -7,6 +7,7 @@ html
     //link(rel='stylesheet', href='/public/style.css')
   body
     h3 New Timeline Entry
+    h4 Hello #{username}
     form(action='/api/cms/newtlentry', method='post')
         div
           label Date:
@@ -29,6 +30,7 @@ html
             option(value='MMA')
         div
           label Author:
-          input(type='text', name='author', required="")
+          input(type='text', name='author', value=username, required="", readonly)
         div
           input(type='submit', value='Submit')
+    a(href='/logout') Logout

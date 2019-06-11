@@ -1,0 +1,18 @@
+html
+  head
+    title Timeline Entries
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //link(rel='stylesheet', href='/public/style.css')
+  body
+    h3 Timeline Entries
+    h4 Hello #{username}
+    ul
+        each item in data
+            div
+                li= item.date + ', ' + item.text + ', ' + item.source
+                a(href='/api/cms/tledit/' + item.id) Edit
+
+   
+    a(href='/logout') Logout

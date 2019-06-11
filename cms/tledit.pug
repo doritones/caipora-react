@@ -1,0 +1,40 @@
+html
+  head
+    title Timeline Edit
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //link(rel='stylesheet', href='/public/style.css')
+  body
+    h3 Timeline Edit
+    h4 Hello #{username}
+    form(action='/api/cms/tledit', method='post')
+        div
+          label Date:
+          input(type='date', name='date_of_the_news', value=data.date_of_the_news, required="")
+        div
+          label Text:
+          input(type='text', name='text_of_timeline', value=data.text_of_timeline, required="")
+        div
+          label Source:
+          input(type='text', name='source', value=data.source, required="")
+        div
+          label Link for the news:
+          input(type='url', name='link_news', value=data.link_news, required="")
+        div
+          label Tags:
+            div
+                input(type='checkbox', name='tags', value='Política geral', checked=('Política geral'===data.tags ? "checked" : undefined))
+                label(for='Política geral') Política geral
+            div
+                input(type='checkbox', name='tags', value='Acordos internacionais', checked=('Acordos internacionais'===data.tags ? "checked" : undefined))
+                label(for='Acordos internacionais') Acordos internacionais
+            div
+                input(type='checkbox', name='tags', value='MMA', checked=('MMA'===data.tags ? "checked" : undefined))
+                label(for='MMA') MMA
+        div
+          label Author:
+          input(type='text', name='author', value=data.author, required="", readonly)
+        div
+          input(type='submit', value='Submit')
+    a(href='/logout') Logout
