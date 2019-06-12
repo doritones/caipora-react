@@ -39,7 +39,8 @@ html
                 ul
                   each item in tags
                     div
-                      input(type='checkbox', name='tags', value=item, checked=(item===data.tags ? "checked" : undefined))
+                      //- input(type='checkbox', name='tags', value=item, checked=(item===data.tags ? "checked" : undefined))
+                      input(type='checkbox', name='tags', value=item, checked=(data.tags.map(dt => item===dt ? "checked" : undefined ).includes('checked')))
                       label(for=item) #{item}
           div
             label(class='field') Author: 

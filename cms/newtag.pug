@@ -19,10 +19,10 @@ html
       h4(class='title') Hello #{username}
       h5(class='title') Existing Tags:
       ul
-          each item in tags
-                  div
-                      input(type='checkbox', name='tags', value=item)
-                      label(for=item) #{item}
+        each item in tags
+          div
+            input(type='checkbox', name='tags', value=item)
+            label(for=item) #{item}
       if message
           p(class='message') #{message}
       form(action='/api/cms/newtag', method='post')

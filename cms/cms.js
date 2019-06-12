@@ -22,7 +22,7 @@ module.exports = function(app) {
         text_of_timeline: { type: String, required: true },
         source: { type: String, required: true },
         link_news: { type: String, required: true },
-        tags: { type: String, required: true },
+        tags: { type: [String], required: true },
         author: { type: String, required: true },
         created_on: { type: Date, default: Date.now }, 
         updated_on: { type: Date, default: Date.now }, 
