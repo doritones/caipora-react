@@ -113,7 +113,8 @@ module.exports = function(app) {
             newTLEntry.save((err, data) => {
                 if (err)
                     console.log(err);
-                res.send(data);
+                req.flash('message', 'Timeline successfully saved.')
+                res.redirect('/api/cms/tledit/' + data._id);
             });
         });
     

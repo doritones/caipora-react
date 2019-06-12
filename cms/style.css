@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #c36a2d;
+    font-family: 'Bungee', cursive;
+}
+
+.topmenu {
+    width: calc(90vw + 40px);
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+}   
+
+.menuright {
+    justify-content: flex-end;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90vw;
+    height: 70vh;
+    background-color: #eadca6;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+.sitename {
+    font-size: 2em;
+}
+
+.title {
+    font-size: 1.8em;
+}
+
+.field {
+    font-size: 1.5em;
+}
+
+.input {
+    font-size: 1.5em;
+    font-family: 'Bungee', cursive;
+}
+
+.inputedit {
+    font-size: 1.5em;
+}
+
+.button {
+    font-size: 1.2em;
+    font-family: 'Bungee', cursive;
+    color: black;
+    background-color: #e2c275;
+    border: none;
+    margin-top: 20px;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.message {
+    font-size: 1.5em;
+    background-color: #c36a2d;
+}
+
+.entries {
+    list-style: none;
+}
+
+.entries a {
+    text-decoration: none;
+    color: black;
+}
+
+.entries:hover {
+    background-color: #c36a2d;
+}

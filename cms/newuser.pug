@@ -4,17 +4,20 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    //link(rel='stylesheet', href='/public/style.css')
+    style
+      include style.css
   body
-    h3 New User
-    form(action='/api/cms/newuser', method='post')
-        div
-          label Username:
-          input(type='text', name='username', required="")
-        div
-          label Password:
-          input(type='text', name='password', required="")
-        div
-          input(type='submit', value='Submit')
-    if message
-      p #{message}
+    div(class='main')
+      h2(class='sitename') Caipora CMS
+      h3(class='title') New User
+      form(action='/api/cms/newuser', method='post')
+          div
+            label(class='field') Username: 
+            input(type='text', name='username', required="", class='input')
+          div
+            label(class='field') Password: 
+            input(type='password', name='password', required="", class='input')
+          div
+            input(type='submit', value='Submit', class='button')
+      if message
+        p(class='message') #{message}

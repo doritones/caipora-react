@@ -11,6 +11,13 @@ module.exports = function(app) {
 
     mongoose.connect(process.env.DB, { useNewUrlParser: true, useFindAndModify: false });
 
+    let ensureAuthenticated = (req, res, next) => {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/api/cms/login');
+    };
+
     const user = new Schema ({
         username: { type: String, required: true }, 
         password: { type: String, required: true }
@@ -42,7 +49,7 @@ module.exports = function(app) {
 
     //Create New User
     app.route('/api/cms/newuser')
-        .get((req,res) => {
+        .get(ensureAuthenticated, (req,res) => {
             let html = pug.renderFile('./cms/newuser.pug', { message: req.flash('message') });
             res.send(html);
         })

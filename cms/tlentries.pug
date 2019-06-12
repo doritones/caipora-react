@@ -4,15 +4,20 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    //link(rel='stylesheet', href='/public/style.css')
+    style
+      include style.css
   body
-    h3 Timeline Entries
-    h4 Hello #{username}
-    ul
-        each item in data
-            div
-                li= item.date + ', ' + item.text + ', ' + item.source
-                a(href='/api/cms/tledit/' + item.id) Edit
-
-   
-    a(href='/logout') Logout
+    div(class='topmenu')
+      div(class='menuleft')
+        a(href='/api/cms/newtlentry', class='button') New Entry
+        a(href='/api/cms/tlentries', class='button') Timeline Entries
+        a(href='/api/cms/newtag', class='button') New Tag
+      div(class='menuright')
+       a(href='/logout', class='button') Logout
+    div(class='main')
+      h3(class='title') Timeline Entries
+      h4(class='title') Hello #{username}
+      ul
+          each item in data
+              div(class='entries')
+                  a(href='/api/cms/tledit/' + item.id): li= item.date + ', ' + item.text + ', ' + item.source

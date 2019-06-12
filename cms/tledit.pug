@@ -4,36 +4,45 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    //link(rel='stylesheet', href='/public/style.css')
+    style
+      include style.css
   body
-    h3 Timeline Edit
-    h4 Hello #{username}
-    if message
-      p #{message}
-    form(action='/api/cms/tledit/' + data._id, method='post')
-        div
-          label Date:
-          input(type='date', name='date_of_the_news', value=data.date_of_the_news, required="")
-        div
-          label Text:
-          input(type='text', name='text_of_timeline', value=data.text_of_timeline, required="")
-        div
-          label Source:
-          input(type='text', name='source', value=data.source, required="")
-        div
-          label Link for the news:
-          input(type='url', name='link_news', value=data.link_news, required="")
-        div
-          label Tags:
-            div
-              ul
-                each item in tags
-                  div
-                    input(type='checkbox', name='tags', value=item, checked=(item===data.tags ? "checked" : undefined))
-                    label(for=item) #{item}
-        div
-          label Author:
-          input(type='text', name='author', value=data.author, required="", readonly)
-        div
-          input(type='submit', value='Submit')
-    a(href='/logout') Logout
+    div(class='topmenu')
+      div(class='menuleft')
+        a(href='/api/cms/newtlentry', class='button') New Entry
+        a(href='/api/cms/tlentries', class='button') Timeline Entries
+        a(href='/api/cms/newtag', class='button') New Tag
+      div(class='menuright')
+        a(href='/logout', class='button') Logout
+    div(class='main')
+      h3(class='title') Timeline Edit
+      h4(class='title') Hello #{username}
+      if message
+        p(class='message') #{message}
+      form(action='/api/cms/tledit/' + data._id, method='post')
+          div
+            label(class='field') Date: 
+            input(type='date', name='date_of_the_news', value=data.date_of_the_news, required="", class='inputedit')
+          div
+            label(class='field') Text: 
+            textarea(name='text_of_timeline', required="", cols=100, rows=10, class='inputedit')
+              | #{data.text_of_timeline}
+          div
+            label(class='field') Source: 
+            input(type='text', name='source', value=data.source, required="", class='inputedit')
+          div
+            label(class='field') Link for the news: 
+            input(type='url', name='link_news', value=data.link_news, required="", size=60, class='inputedit')
+          div
+            label(class='field') Tags:
+              div
+                ul
+                  each item in tags
+                    div
+                      input(type='checkbox', name='tags', value=item, checked=(item===data.tags ? "checked" : undefined))
+                      label(for=item) #{item}
+          div
+            label(class='field') Author: 
+            input(type='text', name='author', value=data.author, required="", readonly, class='inputedit')
+          div
+            input(type='submit', value='Submit', class='button')

@@ -4,33 +4,43 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    //link(rel='stylesheet', href='/public/style.css')
+    style
+      include style.css
   body
-    h3 New Timeline Entry
-    h4 Hello #{username}
-    form(action='/api/cms/newtlentry', method='post')
-        div
-          label Date:
-          input(type='date', name='date_of_the_news', required="")
-        div
-          label Text:
-          input(type='text', name='text_of_timeline', required="")
-        div
-          label Source:
-          input(type='text', name='source', required="")
-        div
-          label Link for the news:
-          input(type='url', name='link_news', required="")
-        div
-          label Tags:
-        ul
-          each item in tags
-            div
-              input(type='checkbox', name='tags', value=item)
-              label(for=item) #{item}
-        div
-          label Author:
-          input(type='text', name='author', value=username, required="", readonly)
-        div
-          input(type='submit', value='Submit')
-    a(href='/logout') Logout
+    div(class='topmenu')
+      div(class='menuleft')
+        a(href='/api/cms/newtlentry', class='button') New Entry
+        a(href='/api/cms/tlentries', class='button') Timeline Entries
+        a(href='/api/cms/newtag', class='button') New Tag
+      div(class='menuright')
+        a(href='/logout', class='button') Logout  
+    div(class='main')
+      h3(class='title') New Timeline Entry
+      h4(class='title') Hello #{username}
+      if message
+        p(class='message') #{message}
+      form(action='/api/cms/newtlentry', method='post')
+          div
+            label(class='field') Date: 
+            input(type='date', name='date_of_the_news', required="", class='inputedit')
+          div
+            label(class='field') Text: 
+            textarea(name='text_of_timeline', required="", cols=100, rows=10, class='inputedit')
+          div
+            label(class='field') Source: 
+            input(type='text', name='source', required="", class='inputedit')
+          div
+            label(class='field') Link for the news: 
+            input(type='url', name='link_news', required="", class='inputedit')
+          div
+            label(class='field') Tags:
+            ul
+              each item in tags
+                div
+                  input(type='checkbox', name='tags', value=item)
+                  label(for=item) #{item}
+          div
+            label(class='field') Author: 
+            input(type='text', name='author', value=username, required="", readonly, class='inputedit')
+          div
+            input(type='submit', value='Submit', class='button')

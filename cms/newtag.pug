@@ -4,22 +4,30 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    //link(rel='stylesheet', href='/public/style.css')
+    style
+      include style.css
   body
-    h3 Create New Tag
-    h4 Hello #{username}
-    h5 Existing Tags:
-    ul
-        each item in tags
-                div
-                    input(type='checkbox', name='tags', value=item)
-                    label(for=item) #{item}
-    if message
-        p #{message}
-    form(action='/api/cms/newtag', method='post')
-        div
-          label Create New Tag:
-          input(type='text', name='new_tag', required="")
-        div
-          input(type='submit', value='Submit')
-    a(href='/logout') Logout
+    div(class='topmenu')
+      div(class='menuleft')
+        a(href='/api/cms/newtlentry', class='button') New Entry
+        a(href='/api/cms/tlentries', class='button') Timeline Entries
+        a(href='/api/cms/newtag', class='button') New Tag
+      div(class='menuright')
+        a(href='/logout', class='button') Logout
+    div(class='main')
+      h3(class='title') Create New Tag
+      h4(class='title') Hello #{username}
+      h5(class='title') Existing Tags:
+      ul
+          each item in tags
+                  div
+                      input(type='checkbox', name='tags', value=item)
+                      label(for=item) #{item}
+      if message
+          p(class='message') #{message}
+      form(action='/api/cms/newtag', method='post')
+          div
+            label(class='field') Create New Tag:
+            input(type='text', name='new_tag', required="", class='inputedit')
+          div
+            input(type='submit', value='Submit', class='button')
