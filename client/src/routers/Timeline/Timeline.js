@@ -23,6 +23,7 @@ class Timeline extends React.Component {
             months: [],
             tagsFilter: null,
             monthsFilter: null,
+            crescentOrder: true,
             loading: true
         }
     }
@@ -47,6 +48,7 @@ class Timeline extends React.Component {
                 });
                 return this.setState({ timeline: timelineArr, loading: false });
             })
+            .then(this.listSort)
             .then(this.listTags)
             .then(this.listMonths)
             .catch(err => console.log(err));
@@ -69,10 +71,9 @@ class Timeline extends React.Component {
     }
 
     listSort (e) {
-        // Just reversing order, because it comes in correct chronological order from Airtable
         const sortList = this.state.timeline;
-        let resortedList = sortList.reverse();
-        this.setState({ timeline: resortedList });
+        this.state.crescentOrder === true ? sortList.sort((a,b) => new Date(a.date) - new Date(b.date)) : sortList.sort((a,b) => new Date(b.date) - new Date(a.date));
+        this.setState({ timeline: sortList, crescentOrder: !this.state.crescentOrder });
     }
 
     filterTags (e) {
